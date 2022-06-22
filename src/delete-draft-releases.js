@@ -16,9 +16,13 @@ function checkDuration(releaseDate) {
 async function run() {
   try {
     const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+    let owner = process.env.REPO_OWNER;
+    let repo = process.env.REPO_NAME;
 
     // Get owner and repo from context of payload that triggered the action
-    const { owner, repo } = github.context.repo;
+    if (!owner || !repo) {
+        ({ owner, repo } = github.context.repo);
+    }
 
     // List all releases
     // API Documentation: https://developer.github.com/v3/repos/releases/#list-releases-for-a-repository
