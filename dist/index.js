@@ -244,7 +244,7 @@ async function run() {
 
     // Get owner and repo from context of payload that triggered the action
     if (!owner || !repo) {
-        ({ owner, repo } = github.context.repo);
+      ({ owner, repo } = github.context.repo);
     }
 
     // List all releases
